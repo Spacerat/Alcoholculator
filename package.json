@@ -2,7 +2,7 @@
     "name": "beer-calc",
     "version": "0.0.1",
     "scripts": {
-        "clean": "rm static/bundle.js static/bundle.js.map",
+        "clean": "rm -rf static/bundle.js static/bundle.js.map",
         "build": "npm run clean && webpack",
         "prod": "npm run build -- -p --config webpack.config.production.js",
         "start": "node server.js"

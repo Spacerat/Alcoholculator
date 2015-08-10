@@ -3,3 +3,8 @@
 	right: 10px;
 	top: 18px;
 }
+
+.container {
+	background-color: #fafafa;
+	box-shadow: 0 0 5px 1px #888;
+}

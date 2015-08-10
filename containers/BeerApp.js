@@ -10,7 +10,7 @@ class BeerApp extends Component {
     const { beers, dispatch } = this.props;
     const actions = bindActionCreators(BeerActions, dispatch);
     return (
-    	<div className="container-fluid">
+    	<div className="container">
       <div className="header">
       <h1>Alcoholculator</h1>
       </div>
@@ -18,7 +18,7 @@ class BeerApp extends Component {
         <div className="col-md-6">
     		  <BeerForm actions={actions} />
         </div>
-        <hr className="visible-sm" />
+        <hr className="visible-sm visible-xs" />
         <div className="col-md-6">
           <BeerList actions={actions} beers={beers} />
         </div>

@@ -13,10 +13,10 @@ class Beer extends Component {
 			<div className="list-group-item beer">
 				<h4 className="list-group-item-heading">
 					<span>Drink {id}</span> -
-					<span> &pound;{(price/alcoholUnits).toFixed(2)} per unit</span> -
-					<span> &pound;{(price/ml).toFixed(3)} per ml</span> -
-					<span> {ml.toFixed(0)} ml total</span>
+					<span> £{(price/alcoholUnits).toFixed(2)} per unit</span>
 				</h4>
+				<span> £{(price/ml).toFixed(3)} per ml</span> -
+				<span> {ml.toFixed(0)} ml total</span>
 				<div>{count} x {size} {unitName} {percentage}% ABV {containerName} for &pound;{price}</div>
 				<button className="btn btn-sm btn-danger deleteButton" onClick={this.handleDelete.bind(this)}>
 					<span className="glyphicon glyphicon-remove"></span>
@@ -29,7 +29,6 @@ class Beer extends Component {
 class BeerList extends Component {
   render() {
     const { beers, actions } = this.props;
-    console.log(actions);
     let beerElements = beers
     	.slice(0)
     	.sort((beer1, beer2) => (beer1.price/beer1.alcoholUnits > beer2.price/beer2.alcoholUnits))
