@@ -1,0 +1,25 @@
+{
+    "name": "beer-calc",
+    "version": "0.0.1",
+    "scripts": {
+        "clean": "rm static/bundle.js static/bundle.js.map",
+        "build": "npm run clean && webpack",
+        "prod": "npm run build -- -p --config webpack.config.production.js",
+        "start": "node server.js"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "react": "^0.13.3",
+        "react-redux": "^0.4.0",
+        "redux": "^1.0.0-rc",
+        "bootstrap": "^3.3.5"
+    },
+    "devDependencies": {
+        "babel": "^5.8.12",
+        "babel-core": "^5.6.18",
+        "babel-loader": "^5.1.4",
+        "react-hot-loader": "^1.2.7",
+        "webpack": "^1.9.11",
+        "webpack-dev-server": "^1.9.0"
+    }
+}
