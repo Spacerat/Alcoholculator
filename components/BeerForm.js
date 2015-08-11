@@ -1,5 +1,35 @@
 import React, { Component, PropTypes } from 'react';
 
+
+class BeerFormItem extends Component {
+	render() {
+		const {leftText, rightText, name, id, defaultValue, min, max, step, pattern, inputType} = this.props;
+		if (leftText) {
+			var leftAddon = (
+			<span className="input-group-addon">
+				<label htmlFor="{id}">{leftText}</label>
+			</span>
+			);
+		}
+		if (rightText) {
+			var rightAddon = (
+			<span className="input-group-addon">
+				<label htmlFor="{id}">{rightText}</label>
+			</span>
+			);
+		}
+		return (
+			<div className="form-group">
+				<div className="input-group">
+					{leftAddon}
+					<input required className="form-control" type={inputType} defaultValue={defaultValue} step={step} min={min} max={max} id={id} name={name} pattern={pattern} />
+					{rightAddon}
+				</div>
+			</div>
+		)
+	}
+}
+
 class BeerForm extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
@@ -9,7 +39,7 @@ class BeerForm extends Component {
 		inputs[2] = inputs[2]+':checked';
 		const elements = inputs.map(input=>$(input, '#drinkForm'));
 		const values = elements.map(elm => elm.val());
-
+		console.log(inputs, elements, values);
 		actions.pinBeer(...values);
 	}
 	handlePercentageChange() {
@@ -17,19 +47,10 @@ class BeerForm extends Component {
 	}
  	render() {
 		return (
-			<form className="form-horizontal" id="drinkForm" onSubmit={this.handleSubmit.bind(this)}>
+			<form id="drinkForm" onSubmit={this.handleSubmit.bind(this)}>
+				<BeerFormItem leftText="Number of drinks" rightText="" name="count" id="drinkCount" defaultValue="1" min="1" max="100" step="1" pattern="\d+" inputType="number" />
 				<div className="form-group">
-					<label className="col-xs-4" htmlFor="drinkCount">Number</label>
-					<div className="col-xs-8">
-					<input required className="form-control" type="number" defaultValue="1" step="1" min="1" id="drinkCount" name="count" pattern="\d+(\.\d+)?"/>
-					</div>
-				</div>
-				<div className="form-group">
-					<label className="col-xs-4" htmlFor="drinkSize">Volume</label>
-					<div className="col-xs-4">
-						<input required className="form-control" id="drinkSize" name="size" type="number" defaultValue="500" pattern="\d+(\.\d+)?"/>
-					</div>
-					<div className="col-xs-4">
+					<div className="input-group radios">
 						<label className="radio-inline">
 							<input required type="radio" name="unit" id="pintsUnit" value="ml" defaultChecked="checked" />Millilitres 
 						</label>
@@ -37,27 +58,10 @@ class BeerForm extends Component {
 							<input required type="radio" name="unit" id="mlUnit" value="pints" />Pints
 						</label>
 					</div>
-					
 				</div>
-
-				<div className="form-group">
-					<label className="col-xs-4"  htmlFor="drinkPercentage">%ABV</label>
-					<div className="col-xs-8">
-						<div className="input-group">
-							<input required id="drinkPercentage" name="percentage" className="form-control" type="number" defaultValue="4" min="0" max="100" step="0.1" pattern="\d+(\.\d+)?"  />
-							<span className="input-group-addon" >%</span>
-						</div>
-					</div>
-				</div>
-				<div className="form-group">
-					<label className="col-xs-4" htmlFor="drinkPrice">Price</label>
-					<div className="col-xs-8">
-						<div className="input-group">
-							<span className="input-group-addon">£</span>
-							<input required className="form-control" name="price" type="number" defaultValue="2.00" min="0" step="0.01" id="drinkPrice" pattern="\d\d?\d?(\.\d)?" />
-						</div>
-					</div>
-				</div>
+				<BeerFormItem leftText="Volume of bottle" rightText="" name="size" id="drinkSize" defaultValue="1" min="0" max="100" step="0.05" pattern="\d+(\.\d+)?" inputType="number" />
+				<BeerFormItem leftText="Percentage ABV" rightText="%" name="percentage" id="drinkPercentage" defaultValue="4" min="0" max="100" step="0.1" pattern="\d\d?\d?(\.\d+)?" inputType="number" />
+				<BeerFormItem leftText="£" rightText="" name="price" id="drinkPrice" defaultValue="2" min="0" max="100" step="0.01" pattern="\d+(\.\d+)?" inputType="number" />
 				<button className="btn btn-default" type="submit">Add</button>
 			</form>
 		);
@@ -67,5 +71,6 @@ class BeerForm extends Component {
 BeerForm.propTypes = {
 	actions: PropTypes.object.isRequired
 }
+
 
 export default BeerForm;

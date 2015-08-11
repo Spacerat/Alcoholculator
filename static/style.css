@@ -4,7 +4,19 @@
 	top: 18px;
 }
 
-.container {
-	background-color: #fafafa;
-	box-shadow: 0 0 5px 1px #888;
+.input-group-addon:first-child {
+	min-width: 141px;
+	text-align: right;
+}
+.input-group-addon: {
+	background-color: #edd;
+}
+
+@media (min-width: 440px) {
+	.radios {
+		float: right;
+		position: relative;
+		top: 4px;
+		padding-left: 18px;
+	}
 }

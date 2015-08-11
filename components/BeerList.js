@@ -19,7 +19,7 @@ class Beer extends Component {
 				<span> {ml.toFixed(0)} ml total</span>
 				<div>{count} x {size} {unitName} {percentage}% ABV {containerName} for &pound;{price}</div>
 				<button className="btn btn-sm btn-danger deleteButton" onClick={this.handleDelete.bind(this)}>
-					<span className="glyphicon glyphicon-remove"></span>
+					<span>X</span>
 				</button>
 			</div>	
 		);
