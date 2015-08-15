@@ -31,7 +31,7 @@ class BeerList extends Component {
     const { beers, actions } = this.props;
     let beerElements = beers
     	.slice(0)
-    	.sort((beer1, beer2) => (beer1.price/beer1.alcoholUnits > beer2.price/beer2.alcoholUnits))
+    	.sort((beer1, beer2) => (beer1.price/beer1.alcoholUnits - beer2.price/beer2.alcoholUnits))
     	.map((beer) => (<Beer beer={beer} deleteBeer={actions.deleteBeer} key={beer.id}/>));
 
     return (

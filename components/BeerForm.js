@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 
 class BeerFormItem extends Component {
+	focusInput() {
+		$(React.findDOMNode(this)).find('input').select();
+	}
 	render() {
 		const {leftText, rightText, name, id, defaultValue, min, max, step, pattern, inputType} = this.props;
 		if (leftText) {
@@ -22,7 +25,7 @@ class BeerFormItem extends Component {
 			<div className="form-group">
 				<div className="input-group">
 					{leftAddon}
-					<input required className="form-control" type={inputType} defaultValue={defaultValue} step={step} min={min} max={max} id={id} name={name} pattern={pattern} />
+					<input required onFocus={this.focusInput.bind(this)} onMouseUp={(e)=>{e.preventDefault()}} className="form-control" type={inputType} defaultValue={defaultValue} step={step} min={min} max={max} id={id} name={name} pattern={pattern} />
 					{rightAddon}
 				</div>
 			</div>
