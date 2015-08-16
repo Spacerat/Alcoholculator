@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 
 class BeerFormItem extends Component {
 	focusInput() {
-		$(React.findDOMNode(this)).find('input').select();
+		React.findDOMNode(this).getElementsByTagName('input')[0].select();
 	}
 	render() {
 		const {leftText, rightText, name, id, defaultValue, min, max, step, pattern, inputType} = this.props;
@@ -40,13 +40,10 @@ class BeerForm extends Component {
 		const names = ['count', 'size', 'unit', 'percentage', 'price'];
 		const inputs = names.map(name=>'input[name='+name+']');
 		inputs[2] = inputs[2]+':checked';
-		const elements = inputs.map(input=>$(input, '#drinkForm'));
-		const values = elements.map(elm => elm.val());
+		const elements = inputs.map(input=>document.querySelector('#drinkForm '+input));
+		const values = elements.map(elm => elm.value);
 		console.log(inputs, elements, values);
 		actions.pinBeer(...values);
-	}
-	handlePercentageChange() {
-		$('#drinkPercentageDisplay').text($('#drinkPercentage').val()+'%');
 	}
  	render() {
 		return (

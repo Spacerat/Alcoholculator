@@ -2,7 +2,16 @@
 
 import { PIN_ITEM, DELETE_ITEM } from '../constants/ActionTypes';
 
-const initialState = [];
+const initialState = [{
+	size: 100,
+	unit: 'pints',
+	id: 1,
+	alcoholUnits: 3,
+	count: 4,
+	percentage: 6,
+	price: 2,
+	ml: 5
+}];
 
 function volume_to_ml(volume, unit) {
 	switch (unit) {
